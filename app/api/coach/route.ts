@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
-import { generateText } from "ai"
-import { openai } from "@ai-sdk/openai"
 
 export async function POST(request: Request) {
   const supabase = createServerSupabaseClient()
@@ -53,17 +51,39 @@ export async function POST(request: Request) {
       recentExercises: exerciseHistory,
     }
 
-    // Generate AI response
-    const { text } = await generateText({
-      model: openai("gpt-4o"),
-      prompt: message,
-      system: `You are a helpful and supportive AI brain coach. Your goal is to help users improve their cognitive abilities through personalized advice, motivation, and brain exercise recommendations. 
-      
-      Here is information about the user:
-      ${JSON.stringify(userContext)}
-      
-      Be friendly, encouraging, and knowledgeable about neuroscience and cognitive training. Provide specific advice based on the user's cognitive profile and recent exercise history when relevant.`,
+    // Use the chatanywhere API directly
+    const response = await fetch("https://api.chatanywhere.tech/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CHATANYWHERE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `You are a helpful and supportive AI brain coach. Your goal is to help users improve their cognitive abilities through personalized advice, motivation, and brain exercise recommendations. 
+            
+            Here is information about the user:
+            ${JSON.stringify(userContext)}
+            
+            Be friendly, encouraging, and knowledgeable about neuroscience and cognitive training. Provide specific advice based on the user's cognitive profile and recent exercise history when relevant.`,
+          },
+          {
+            role: "user",
+            content: message,
+          },
+        ],
+      }),
     })
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`)
+    }
+
+    const data = await response.json()
+    const text = data.choices[0].message.content
 
     // Save AI response to database
     const { error: responseError } = await supabase.from("chat_messages").insert({
@@ -82,3 +102,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
+

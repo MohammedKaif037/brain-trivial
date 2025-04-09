@@ -8,8 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Brain, Send } from "lucide-react"
-import { generateText } from "ai"
-import { openai } from "@ai-sdk/openai"
 
 type Message = {
   id: string
@@ -53,14 +51,35 @@ export default function CoachPage() {
     setIsLoading(true)
 
     try {
-      // In a real app, we would use the AI SDK to generate a response
-      // This is a simplified example using the AI SDK
-      const { text } = await generateText({
-        model: openai("gpt-4o"),
-        prompt: input,
-        system:
-          "You are a helpful and supportive AI brain coach. Your goal is to help users improve their cognitive abilities through personalized advice, motivation, and brain exercise recommendations. Be friendly, encouraging, and knowledgeable about neuroscience and cognitive training.",
+      // Use the chatanywhere API directly
+      const response = await fetch("https://api.chatanywhere.tech/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CHATANYWHERE_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a helpful and supportive AI brain coach. Your goal is to help users improve their cognitive abilities through personalized advice, motivation, and brain exercise recommendations. Be friendly, encouraging, and knowledgeable about neuroscience and cognitive training.",
+            },
+            {
+              role: "user",
+              content: input,
+            },
+          ],
+        }),
       })
+
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`)
+      }
+
+      const data = await response.json()
+      const text = data.choices[0].message.content
 
       // Add assistant message
       const assistantMessage: Message = {
@@ -252,3 +271,4 @@ export default function CoachPage() {
     </div>
   )
 }
+
