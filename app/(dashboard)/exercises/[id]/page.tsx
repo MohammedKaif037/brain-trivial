@@ -10,7 +10,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
 
 export default async function ExercisePage({ params }: { params: { id: string } }) {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Get the exercise data
   const { data: exercise, error } = await supabase.from("exercises").select("*").eq("id", params.id).single()

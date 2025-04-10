@@ -5,6 +5,9 @@ import { NotificationSettings } from "@/components/settings/notification-setting
 import { AppearanceSettings } from "@/components/settings/appearance-settings"
 import { PrivacySettings } from "@/components/settings/privacy-settings"
 
+export const dynamic = 'force-dynamic';
+
+// Your existing layout component...
 export default async function SettingsPage() {
   const supabase = createServerSupabaseClient()
 

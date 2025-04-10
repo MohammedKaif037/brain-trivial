@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const difficulty = searchParams.get("difficulty")
   const limit = searchParams.get("limit") || "10"
 
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Get the current user
   const {

@@ -10,12 +10,15 @@ import { ExerciseGrid } from "@/components/exercises/exercise-grid"
 import { ExerciseSkeletonGrid } from "@/components/exercises/exercise-skeleton-grid"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 
+export const dynamic = 'force-dynamic';
+
+// Your existing layout component...
 export default async function ExercisesPage({
   searchParams,
 }: {
   searchParams: { category?: string; difficulty?: string; q?: string }
 }) {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Get the current user
   const {

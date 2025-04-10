@@ -1,326 +1,325 @@
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export interface Database {
   public: {
     Tables: {
       users: {
         Row: {
-          id: string
-          email: string
-          created_at: string
-          username: string | null
-          full_name: string | null
-          avatar_url: string | null
-          brain_health_score: number
-          current_streak: number
-          exercises_completed: number
-          total_time_spent: number
-          last_active: string
-        }
+          id: string;
+          email: string;
+          created_at: string;
+          username: string | null;
+          full_name: string | null;
+          avatar_url: string | null;
+          brain_health_score: number;
+          current_streak: number;
+          exercises_completed: number;
+          total_time_spent: number;
+          last_active: string;
+        };
         Insert: {
-          id?: string
-          email: string
-          created_at?: string
-          username?: string | null
-          full_name?: string | null
-          avatar_url?: string | null
-          brain_health_score?: number
-          current_streak?: number
-          exercises_completed?: number
-          total_time_spent?: number
-          last_active?: string
-        }
+          id?: string;
+          email: string;
+          created_at?: string;
+          username?: string | null;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          brain_health_score?: number;
+          current_streak?: number;
+          exercises_completed?: number;
+          total_time_spent?: number;
+          last_active?: string;
+        };
         Update: {
-          id?: string
-          email?: string
-          created_at?: string
-          username?: string | null
-          full_name?: string | null
-          avatar_url?: string | null
-          brain_health_score?: number
-          current_streak?: number
-          exercises_completed?: number
-          total_time_spent?: number
-          last_active?: string
-        }
-      }
+          id?: string;
+          email?: string;
+          created_at?: string;
+          username?: string | null;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          brain_health_score?: number;
+          current_streak?: number;
+          exercises_completed?: number;
+          total_time_spent?: number;
+          last_active?: string;
+        };
+      };
       cognitive_profiles: {
         Row: {
-          id: string
-          user_id: string
-          memory_score: number
-          focus_score: number
-          problem_solving_score: number
-          creativity_score: number
-          language_score: number
-          last_updated: string
-        }
+          id: string;
+          user_id: string;
+          memory_score: number;
+          focus_score: number;
+          problem_solving_score: number;
+          creativity_score: number;
+          language_score: number;
+          last_updated: string;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          memory_score: number
-          focus_score: number
-          problem_solving_score: number
-          creativity_score: number
-          language_score: number
-          last_updated?: string
-        }
+          id?: string;
+          user_id: string;
+          memory_score: number;
+          focus_score: number;
+          problem_solving_score: number;
+          creativity_score: number;
+          language_score: number;
+          last_updated?: string;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          memory_score?: number
-          focus_score?: number
-          problem_solving_score?: number
-          creativity_score?: number
-          language_score?: number
-          last_updated?: string
-        }
-      }
+          id?: string;
+          user_id?: string;
+          memory_score?: number;
+          focus_score?: number;
+          problem_solving_score?: number;
+          creativity_score?: number;
+          language_score?: number;
+          last_updated?: string;
+        };
+      };
       exercises: {
         Row: {
-          id: string
-          title: string
-          description: string
-          category: string
-          difficulty: string
-          duration: number
-          instructions: string
-          content_json: Json
-          created_at: string
-        }
+          id: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty: string;
+          duration: number;
+          instructions: string;
+          content_json: Json;
+          created_at: string;
+        };
         Insert: {
-          id?: string
-          title: string
-          description: string
-          category: string
-          difficulty: string
-          duration: number
-          instructions: string
-          content_json: Json
-          created_at?: string
-        }
+          id?: string;
+          title: string;
+          description: string;
+          category: string;
+          difficulty: string;
+          duration: number;
+          instructions: string;
+          content_json: Json;
+          created_at?: string;
+        };
         Update: {
-          id?: string
-          title?: string
-          description?: string
-          category?: string
-          difficulty?: string
-          duration?: number
-          instructions?: string
-          content_json?: Json
-          created_at?: string
-        }
-      }
+          id?: string;
+          title?: string;
+          description?: string;
+          category?: string;
+          difficulty?: string;
+          duration?: number;
+          instructions?: string;
+          content_json?: Json;
+          created_at?: string;
+        };
+      };
       exercise_history: {
         Row: {
-          id: string
-          user_id: string
-          exercise_id: string
-          score: number
-          accuracy: number
-          time_spent: number
-          completed_at: string
-          difficulty_level: number
-        }
+          id: string;
+          user_id: string;
+          exercise_id: string;
+          score: number;
+          accuracy: number;
+          time_spent: number;
+          completed_at: string;
+          difficulty_level: number;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          exercise_id: string
-          score: number
-          accuracy: number
-          time_spent: number
-          completed_at?: string
-          difficulty_level: number
-        }
+          id?: string;
+          user_id: string;
+          exercise_id: string;
+          score: number;
+          accuracy: number;
+          time_spent: number;
+          completed_at?: string;
+          difficulty_level: number;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          exercise_id?: string
-          score?: number
-          accuracy?: number
-          time_spent?: number
-          completed_at?: string
-          difficulty_level?: number
-        }
-      }
+          id?: string;
+          user_id?: string;
+          exercise_id?: string;
+          score?: number;
+          accuracy?: number;
+          time_spent?: number;
+          completed_at?: string;
+          difficulty_level?: number;
+        };
+      };
       daily_streaks: {
         Row: {
-          id: string
-          user_id: string
-          date: string
-          exercises_completed: number
-          total_time: number
-        }
+          id: string;
+          user_id: string;
+          date: string;
+          exercises_completed: number;
+          total_time: number;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          date: string
-          exercises_completed: number
-          total_time: number
-        }
+          id?: string;
+          user_id: string;
+          date: string;
+          exercises_completed: number;
+          total_time: number;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          date?: string
-          exercises_completed?: number
-          total_time?: number
-        }
-      }
+          id?: string;
+          user_id?: string;
+          date?: string;
+          exercises_completed?: number;
+          total_time?: number;
+        };
+      };
       learning_content: {
         Row: {
-          id: string
-          title: string
-          content: string
-          category: string
-          reading_time: number
-          created_at: string
-        }
+          id: string;
+          title: string;
+          content: string;
+          category: string;
+          reading_time: number;
+          created_at: string;
+        };
         Insert: {
-          id?: string
-          title: string
-          content: string
-          category: string
-          reading_time: number
-          created_at?: string
-        }
+          id?: string;
+          title: string;
+          content: string;
+          category: string;
+          reading_time: number;
+          created_at?: string;
+        };
         Update: {
-          id?: string
-          title?: string
-          content?: string
-          category?: string
-          reading_time?: number
-          created_at?: string
-        }
-      }
+          id?: string;
+          title?: string;
+          content?: string;
+          category?: string;
+          reading_time?: number;
+          created_at?: string;
+        };
+      };
       user_learning: {
         Row: {
-          id: string
-          user_id: string
-          learning_content_id: string
-          completed: boolean
-          completed_at: string | null
-        }
+          id: string;
+          user_id: string;
+          learning_content_id: string;
+          completed: boolean;
+          completed_at: string | null;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          learning_content_id: string
-          completed: boolean
-          completed_at?: string | null
-        }
+          id?: string;
+          user_id: string;
+          learning_content_id: string;
+          completed: boolean;
+          completed_at?: string | null;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          learning_content_id?: string
-          completed?: boolean
-          completed_at?: string | null
-        }
-      }
+          id?: string;
+          user_id?: string;
+          learning_content_id?: string;
+          completed?: boolean;
+          completed_at?: string | null;
+        };
+      };
       chat_messages: {
         Row: {
-          id: string
-          user_id: string
-          role: string
-          content: string
-          created_at: string
-        }
+          id: string;
+          user_id: string;
+          role: string;
+          content: string;
+          created_at: string;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          role: string
-          content: string
-          created_at?: string
-        }
+          id?: string;
+          user_id: string;
+          role: string;
+          content: string;
+          created_at?: string;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          role?: string
-          content?: string
-          created_at?: string
-        }
-      }
+          id?: string;
+          user_id?: string;
+          role?: string;
+          content?: string;
+          created_at?: string;
+        };
+      };
       user_goals: {
         Row: {
-          id: string
-          user_id: string
-          title: string
-          description: string | null
-          target_value: number
-          current_value: number
-          goal_type: string
-          start_date: string
-          end_date: string | null
-          completed: boolean
-          completed_at: string | null
-        }
+          id: string;
+          user_id: string;
+          title: string;
+          description: string | null;
+          target_value: number;
+          current_value: number;
+          goal_type: string;
+          start_date: string;
+          end_date: string | null;
+          completed: boolean;
+          completed_at: string | null;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          title: string
-          description?: string | null
-          target_value: number
-          current_value: number
-          goal_type: string
-          start_date: string
-          end_date?: string | null
-          completed: boolean
-          completed_at?: string | null
-        }
+          id?: string;
+          user_id: string;
+          title: string;
+          description?: string | null;
+          target_value: number;
+          current_value: number;
+          goal_type: string;
+          start_date: string;
+          end_date?: string | null;
+          completed: boolean;
+          completed_at?: string | null;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          title?: string
-          description?: string | null
-          target_value?: number
-          current_value?: number
-          goal_type?: string
-          start_date?: string
-          end_date?: string | null
-          completed?: boolean
-          completed_at?: string | null
-        }
-      }
+          id?: string;
+          user_id?: string;
+          title?: string;
+          description?: string | null;
+          target_value?: number;
+          current_value?: number;
+          goal_type?: string;
+          start_date?: string;
+          end_date?: string | null;
+          completed?: boolean;
+          completed_at?: string | null;
+        };
+      };
       user_preferences: {
         Row: {
-          id: string
-          user_id: string
-          preferred_categories: string[]
-          preferred_difficulty: string
-          daily_goal_minutes: number
-          reminder_enabled: boolean
-          reminder_time: string | null
-          theme: string
-        }
+          id: string;
+          user_id: string;
+          preferred_categories: string[];
+          preferred_difficulty: string;
+          daily_goal_minutes: number;
+          reminder_enabled: boolean;
+          reminder_time: string | null;
+          theme: string;
+        };
         Insert: {
-          id?: string
-          user_id: string
-          preferred_categories: string[]
-          preferred_difficulty: string
-          daily_goal_minutes: number
-          reminder_enabled: boolean
-          reminder_time?: string | null
-          theme: string
-        }
+          id?: string;
+          user_id: string;
+          preferred_categories: string[];
+          preferred_difficulty: string;
+          daily_goal_minutes: number;
+          reminder_enabled: boolean;
+          reminder_time?: string | null;
+          theme: string;
+        };
         Update: {
-          id?: string
-          user_id?: string
-          preferred_categories?: string[]
-          preferred_difficulty?: string
-          daily_goal_minutes?: number
-          reminder_enabled?: boolean
-          reminder_time?: string | null
-          theme?: string
-        }
-      }
-    }
+          id?: string;
+          user_id?: string;
+          preferred_categories?: string[];
+          preferred_difficulty?: string;
+          daily_goal_minutes?: number;
+          reminder_enabled?: boolean;
+          reminder_time?: string | null;
+          theme?: string;
+        };
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Enums: {
-      [_ in never]: never
-    }
-  }
+      [_ in never]: never;
+    };
+  };
 }
-

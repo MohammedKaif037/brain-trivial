@@ -8,6 +8,9 @@ import { Brain, Calendar, Clock, Edit, Medal, Trophy, User } from "lucide-react"
 import { ProfileForm } from "@/components/profile/profile-form"
 import { AchievementsList } from "@/components/profile/achievements-list"
 
+// Add this at the top of your profile/page.tsx file
+export const dynamic = 'force-dynamic';
+
 export default async function ProfilePage() {
   const supabase = createServerSupabaseClient()
 

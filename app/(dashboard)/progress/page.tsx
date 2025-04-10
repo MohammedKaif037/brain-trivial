@@ -10,7 +10,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { Brain, Calendar, ChevronUp, Clock, LineChart, ListChecks, Target, Trophy } from "lucide-react"
 
 export default async function ProgressPage() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Get the current user
   const {

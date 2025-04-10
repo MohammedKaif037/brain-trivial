@@ -28,11 +28,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      setUser(user)
-      setLoading(false)
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        setUser(user)
+      } catch (error) {
+        console.error("Error fetching user:", error)
+      } finally {
+        setLoading(false)
+      }
     }
 
     getUser()
@@ -42,6 +47,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session?.user) {
         setUser(session.user)
+        if (window.location.pathname === "/auth/login" || window.location.pathname === "/auth/register") {
+          router.push("/dashboard")
+        }
       } else if (event === "SIGNED_OUT") {
         setUser(null)
         router.push("/")

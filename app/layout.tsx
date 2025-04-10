@@ -11,7 +11,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+          forcedTheme="light"
+        >
           <AuthProvider>
             <main className="min-h-screen bg-background">{children}</main>
           </AuthProvider>
@@ -20,10 +26,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-import './globals.css'
-
-export const metadata = {
-      generator: 'v0.dev'
-    };

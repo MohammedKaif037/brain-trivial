@@ -13,7 +13,7 @@ export async function ExerciseGrid({
   difficulty?: string
   query?: string
 }) {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Build the query
   let supabaseQuery = supabase.from("exercises").select("*")

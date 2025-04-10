@@ -26,7 +26,7 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
@@ -35,8 +35,11 @@ export default function LoginPage() {
         throw error
       }
 
-      router.push("/dashboard")
-      router.refresh()
+      if (data.user) {
+        console.log("Login successful, redirecting to dashboard")
+        router.push("/dashboard")
+        router.refresh()
+      }
     } catch (error: any) {
       setError(error.message || "Failed to sign in")
     } finally {

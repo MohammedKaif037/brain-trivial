@@ -18,7 +18,7 @@ import { RecommendedExercises } from "@/components/recommended-exercises"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 
 export default async function Dashboard() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
 
   // Get user data
   const {
